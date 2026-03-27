@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patricia Laufer | Strategic Marketing Leader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        black: '#0a0a0a',
+                        dark: '#111111',
+                        navy: '#0a192f',
+                        navyLight: '#112240',
+                        slate: '#233554',
+                        blue: '#64ffda',
+                        blueDark: '#4cc9b8',
+                        gray: '#8892b0',
+                        lightGray: '#a8b2d1',
+                        white: '#e6f1ff',
+                        offWhite: '#f8f9fa',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #8892b0;
+        }
+        
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .text-balance {
+            text-wrap: balance;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+        }
+
+        .link-underline {
+            position: relative;
+        }
+
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #64ffda;
+            transition: width 0.3s ease;
+        }
+
+        .link-underline:hover::after {
+            width: 100%;
+        }
+
+        .image-reveal {
+            overflow: hidden;
+        }
+
+        .image-reveal img {
+            transition: transform 0.6s ease;
+            filter: grayscale(100%) contrast(1.1);
+        }
+
+        .image-reveal:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%) contrast(1);
+        }
+
+        /* Timeline specific styles */
+        .timeline-line {
+            position: relative;
+        }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, #64ffda, #233554, transparent);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-line::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #64ffda 0%, #4cc9b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+        }
+
+        .glow-blue:hover {
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.2);
+        }
+
+        ::selection {
+            background: #64ffda;
+            color: #0a192f;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #233554;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64ffda;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue selection:text-navy">
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 top-0 bg-black/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="font-display font-bold text-xl tracking-tight text-white">
+                    PL.
+                </a>
+                
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="#about" class="text-sm font-medium text-gray hover:text-blue transition-colors link-underline">About</a>
+                    <a href="#work" class="text-sm font-medium text-gray hover:text-blue transition-colors link-underline">Selected Work</a>
+                    <a href="#experience" class="text-sm font-medium text-gray hover:text-blue transition-colors link-underline">Experience</a>
+                    <a href="#skills" class="text-sm font-medium text-gray hover:text-blue transition-colors link-underline">Skills</a>
+                    <a href="#passion" class="text-sm font-medium text-gray hover:text-blue transition-colors link-underline">Music</a>
+                    <a href="#contact" class="px-6 py-2.5 border border-blue text-blue text-sm font-medium hover:bg-blue/10 transition-all">Contact</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden text-gray hover:text-blue">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy border-b border-white/5">
+            <div class="px-6 py-6 space-y-4">
+                <a href="#about" class="block text-gray hover:text-blue">About</a>
+                <a href="#work" class="block text-gray hover:text-blue">Selected Work</a>
+                <a href="#experience" class="block text-gray hover:text-blue">Experience</a>
+                <a href="#skills" class="block text-gray hover:text-blue">Skills</a>
+                <a href="#passion" class="block text-gray hover:text-blue">Music</a>
+                <a href="#contact" class="block text-blue">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 pb-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="reveal">
+                        <p class="text-blue font-medium text-sm tracking-widest uppercase mb-4">Strategic Marketing Leader</p>
+                        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.9] tracking-tight text-balance">
+                            Patricia<br>
+                            <span class="text-gray/40">Laufer</span>
+                        </h1>
+                    </div>
+                    
+                    <p class="reveal stagger-1 text-lg md:text-xl text-gray leading-relaxed max-w-xl text-balance">
+                        15+ years driving go-to-market strategies, product launches, and integrated campaigns for Fortune 500 tech leaders.
+                    </p>
+
+                    <div class="reveal stagger-2 flex flex-wrap gap-4">
+                        <a href="#work" class="inline-flex items-center gap-2 px-8 py-4 bg-blue text-navy font-medium hover:bg-blue/80 transition-colors duration-300 glow-blue">
+                            View Selected Work
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 border border-blue text-blue font-medium hover:bg-blue/10 transition-colors duration-300">
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 reveal stagger-2">
+                    <div class="image-reveal aspect-[4/5] bg-navyLight">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=750&fit=crop" 
+                             alt="Patricia Laufer" 
+                             class="w-full h-full object-cover"
+                             id="hero-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- REPLACED: Stats row with detailed work blocks -->
+            <div class="reveal stagger-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-20 pt-12 border-t border-white/10">
+                <div class="bg-navyLight border border-white/5 p-6 hover:border-blue/30 transition-all hover-lift">
+                    <p class="font-display text-4xl font-bold text-blue mb-2">15+</p>
+                    <p class="text-sm text-gray uppercase tracking-wider mb-2">Years Experience</p>
+                    <p class="text-xs text-gray/60 leading-relaxed">Fortune 500 tech companies including Samsung, BlackBerry, VMware, and Motorola</p>
+                </div>
+                <div class="bg-navyLight border border-white/5 p-6 hover:border-blue/30 transition-all hover-lift">
+                    <p class="font-display text-4xl font-bold text-blue mb-2">$4M+</p>
+                    <p class="text-sm text-gray uppercase tracking-wider mb-2">Budgets Managed</p>
+                    <p class="text-xs text-gray/60 leading-relaxed">Quarterly and annual marketing budgets across LATAM and Americas regions</p>
+                </div>
+                <div class="bg-navyLight border border-white/5 p-6 hover:border-blue/30 transition-all hover-lift">
+                    <p class="font-display text-4xl font-bold text-blue mb-2">360°</p>
+                    <p class="text-sm text-gray uppercase tracking-wider mb-2">Campaign Strategy</p>
+                    <p class="text-xs text-gray/60 leading-relaxed">Integrated digital, events, PR, and partner enablement programs</p>
+                </div>
+                <div class="bg-navyLight border border-white/5 p-6 hover:border-blue/30 transition-all hover-lift">
+                    <p class="font-display text-4xl font-bold text-blue mb-2">LATAM</p>
+                    <p class="text-sm text-gray uppercase tracking-wider mb-2">Regional Expert</p>
+                    <p class="text-xs text-gray/60 leading-relaxed">Deep expertise in Latin American markets, bilingual Spanish/English</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Selected Work Section -->
+    <section id="work" class="py-24 bg-navy/30">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="mb-16 reveal">
+                <p class="text-blue font-medium text-sm tracking-widest uppercase mb-4">Portfolio</p>
+                <h2 class="font-display text-4xl font-bold text-white">Selected Work</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- MDF Optimization -->
+                <div class="group reveal hover-lift bg-dark border border-white/5 p-8 hover:border-blue/30 transition-all">
+                    <div class="w-12 h-12 bg-blue/10 flex items-center justify-center mb-6 group-hover:bg-blue/20 transition-colors">
+                        <i class="fas fa-chart-pie text-blue text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3 group-hover:text-blue transition-colors">MDF Optimization</h3>
+                    <p class="text-gray text-sm leading-relaxed mb-4">Achieved 20%+ ROI by optimizing Market Development Funds allocation across strategic partner initiatives at Omnissa.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">Budget Management</span>
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">Partner Enablement</span>
+                    </div>
+                </div>
+
+                <!-- Global Product Launch -->
+                <div class="group reveal stagger-1 hover-lift bg-dark border border-white/5 p-8 hover:border-blue/30 transition-all">
+                    <div class="w-12 h-12 bg-blue/10 flex items-center justify-center mb-6 group-hover:bg-blue/20 transition-colors">
+                        <i class="fas fa-rocket text-blue text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3 group-hover:text-blue transition-colors">Global Product Launch</h3>
+                    <p class="text-gray text-sm leading-relaxed mb-4">Directed go-to-market strategy for music software/hardware launches at IK Multimedia across North America, LATAM, and EMEA.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">GTM Strategy</span>
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">NAMM Events</span>
+                    </div>
+                </div>
+
+                <!-- 360° Campaigns -->
+                <div class="group reveal stagger-2 hover-lift bg-dark border border-white/5 p-8 hover:border-blue/30 transition-all">
+                    <div class="w-12 h-12 bg-blue/10 flex items-center justify-center mb-6 group-hover:bg-blue/20 transition-colors">
+                        <i class="fas fa-bullhorn text-blue text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3 group-hover:text-blue transition-colors">360° Campaigns</h3>
+                    <p class="text-gray text-sm leading-relaxed mb-4">Managed $1M quarterly budget for integrated campaigns spanning digital, retail, B2B, and events at Samsung Caribbean.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">Digital Marketing</span>
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">Spokesperson</span>
+                    </div>
+                </div>
+
+                <!-- Virtual Portal -->
+                <div class="group reveal hover-lift bg-dark border border-white/5 p-8 hover:border-blue/30 transition-all">
+                    <div class="w-12 h-12 bg-blue/10 flex items-center justify-center mb-6 group-hover:bg-blue/20 transition-colors">
+                        <i class="fas fa-laptop-code text-blue text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3 group-hover:text-blue transition-colors">Virtual Portal Development</h3>
+                    <p class="text-gray text-sm leading-relaxed mb-4">Created Virtual Marketing Materials Center at BlackBerry, adopted as best practice across multiple regions.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">Web Development</span>
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">Best Practice Award</span>
+                    </div>
+                </div>
+
+                <!-- Social Media Growth -->
+                <div class="group reveal stagger-1 hover-lift bg-dark border border-white/5 p-8 hover:border-blue/30 transition-all">
+                    <div class="w-12 h-12 bg-blue/10 flex items-center justify-center mb-6 group-hover:bg-blue/20 transition-colors">
+                        <i class="fas fa-share-alt text-blue text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3 group-hover:text-blue transition-colors">Social Media Growth</h3>
+                    <p class="text-gray text-sm leading-relaxed mb-4">Established Spanish-language social channels at IK Multimedia, achieving 300% follower growth in 4 months.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">Content Strategy</span>
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">Community Building</span>
+                    </div>
+                </div>
+
+                <!-- Process Improvement -->
+                <div class="group reveal stagger-2 hover-lift bg-dark border border-white/5 p-8 hover:border-blue/30 transition-all">
+                    <div class="w-12 h-12 bg-blue/10 flex items-center justify-center mb-6 group-hover:bg-blue/20 transition-colors">
+                        <i class="fas fa-cogs text-blue text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3 group-hover:text-blue transition-colors">Process Improvement</h3>
+                    <p class="text-gray text-sm leading-relaxed mb-4">Directed Change Control process for iDEN platform at Motorola, awarded Worldwide Excellence for operational improvements.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">Six Sigma</span>
+                        <span class="text-xs px-3 py-1 bg-blue/10 text-blue font-mono">Award Winner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-navyLight/30">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                <div class="lg:col-span-4 reveal">
+                    <p class="text-blue font-medium text-sm tracking-widest uppercase mb-4">About</p>
+                    <h2 class="font-display text-4xl font-bold text-white leading-tight">Data-Driven & Results-Oriented</h2>
+                </div>
+                <div class="lg:col-span-8 space-y-6 reveal stagger-1">
+                    <p class="text-lg text-gray leading-relaxed">
+                        I am a bilingual (English/Spanish) marketing leader with a passion for technology and innovation. My career spans high-impact roles at <strong class="text-white">Omnissa (VMware/Broadcom)</strong>, <strong class="text-white">Samsung</strong>, <strong class="text-white">BlackBerry</strong>, and <strong class="text-white">Motorola</strong>.
+                    </p>
+                    <p class="text-lg text-gray leading-relaxed">
+                        I specialize in bridging the gap between complex technical products and market-ready campaigns. Whether managing a $1M quarterly budget for Samsung's Caribbean division or optimizing MDF spend for VMware partners, I bring a meticulous, ROI-focused approach.
+                    </p>
+                    <p class="text-lg text-gray leading-relaxed">
+                        Beyond the boardroom, I am a vocalist and performer, bringing the same stage presence and confidence to corporate presentations that I bring to the microphone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline Section -->
+    <section id="experience" class="py-24 bg-black">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8">
+            <div class="mb-16 reveal">
+                <p class="text-blue font-medium text-sm tracking-widest uppercase mb-4">Career Path</p>
+                <h2 class="font-display text-4xl font-bold text-white">Professional Journey</h2>
+            </div>
+
+            <div class="relative timeline-line space-y-12">
+                
+                <!-- Omnissa -->
+                <div class="relative z-10 md:flex items-center justify-between group reveal">
+                    <div class="hidden md:block w-5/12 text-right pr-8">
+                        <h4 class="font-display text-xl font-bold text-white group-hover:text-blue transition-colors">Partner Marketing Manager</h4>
+                        <p class="text-blue font-medium">Omnissa (VMware/Broadcom)</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-black border-2 border-blue z-20 group-hover:scale-150 transition-transform"></div>
+                    <div class="pl-8 md:pl-0 md:w-5/12 md:pl-8">
+                        <span class="text-sm text-gray font-medium px-4 py-1 bg-navyLight rounded-full md:hidden">2023 — Present</span>
+                        <div class="md:hidden mb-2 mt-2">
+                            <h4 class="font-display text-xl font-bold text-white">Partner Marketing Manager</h4>
+                            <p class="text-blue font-medium">Omnissa</p>
+                        </div>
+                        <span class="hidden md:inline-block text-sm text-gray font-medium mb-2">2023 — Present</span>
+                        <p class="text-gray leading-relaxed">
+                            Leading end-to-end partner marketing campaigns for EUC (SaaS). Managing MDF allocation with 20%+ ROI. Driving go-to-market strategy and Marketo automation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- IK Multimedia -->
+                <div class="relative z-10 md:flex items-center justify-between group reveal flex-row-reverse">
+                    <div class="hidden md:block w-5/12 text-left pl-8">
+                        <h4 class="font-display text-xl font-bold text-white group-hover:text-blue transition-colors">Global Marketing Program Manager</h4>
+                        <p class="text-blue font-medium">IK Multimedia</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-black border-2 border-blue z-20 group-hover:scale-150 transition-transform"></div>
+                    <div class="pl-8 md:pl-0 md:w-5/12 md:text-right md:pr-8">
+                        <span class="text-sm text-gray font-medium px-4 py-1 bg-navyLight rounded-full md:hidden">2017 — 2018</span>
+                        <div class="md:hidden mb-2 mt-2">
+                            <h4 class="font-display text-xl font-bold text-white">Global Marketing Manager</h4>
+                            <p class="text-blue font-medium">IK Multimedia</p>
+                        </div>
+                        <span class="hidden md:inline-block text-sm text-gray font-medium mb-2">2017 — 2018</span>
+                        <p class="text-gray leading-relaxed">
+                            Directed global GTM strategy for music software/hardware. Organized NAMM trade shows. Established Spanish social channels achieving 300% follower growth.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Samsung -->
+                <div class="relative z-10 md:flex items-center justify-between group reveal">
+                    <div class="hidden md:block w-5/12 text-right pr-8">
+                        <h4 class="font-display text-xl font-bold text-white group-hover:text-blue transition-colors">Sr. Marketing Product Manager</h4>
+                        <p class="text-blue font-medium">Samsung Electronics</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-black border-2 border-blue z-20 group-hover:scale-150 transition-transform"></div>
+                    <div class="pl-8 md:pl-0 md:w-5/12 md:pl-8">
+                        <span class="text-sm text-gray font-medium px-4 py-1 bg-navyLight rounded-full md:hidden">2013 — 2015</span>
+                        <div class="md:hidden mb-2 mt-2">
+                            <h4 class="font-display text-xl font-bold text-white">Sr. Marketing Manager</h4>
+                            <p class="text-blue font-medium">Samsung</p>
+                        </div>
+                        <span class="hidden md:inline-block text-sm text-gray font-medium mb-2">2013 — 2015</span>
+                        <p class="text-gray leading-relaxed">
+                            Directed 360° campaigns ($1M quarterly budget). Served as official spokesperson for Caribbean & Central America. Led product launches at CES and Mobile World Congress.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- BlackBerry -->
+                <div class="relative z-10 md:flex items-center justify-between group reveal flex-row-reverse">
+                    <div class="hidden md:block w-5/12 text-left pl-8">
+                        <h4 class="font-display text-xl font-bold text-white group-hover:text-blue transition-colors">Regional Marketing Operations Manager</h4>
+                        <p class="text-blue font-medium">BlackBerry</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-black border-2 border-blue z-20 group-hover:scale-150 transition-transform"></div>
+                    <div class="pl-8 md:pl-0 md:w-5/12 md:text-right md:pr-8">
+                        <span class="text-sm text-gray font-medium px-4 py-1 bg-navyLight rounded-full md:hidden">2008 — 2012</span>
+                        <div class="md:hidden mb-2 mt-2">
+                            <h4 class="font-display text-xl font-bold text-white">Regional Manager</h4>
+                            <p class="text-blue font-medium">BlackBerry</p>
+                        </div>
+                        <span class="hidden md:inline-block text-sm text-gray font-medium mb-2">2008 — 2012</span>
+                        <p class="text-gray leading-relaxed">
+                            Directed regional operations with $4M budget. Created Virtual Marketing Materials Center (Best Practice Award). Managed LATAM logistics and warehousing network.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Motorola -->
+                <div class="relative z-10 md:flex items-center justify-between group reveal">
+                    <div class="hidden md:block w-5/12 text-right pr-8">
+                        <h4 class="font-display text-xl font-bold text-white group-hover:text-blue transition-colors">Regional Key Account Manager</h4>
+                        <p class="text-blue font-medium">Motorola</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-black border-2 border-blue z-20 group-hover:scale-150 transition-transform"></div>
+                    <div class="pl-8 md:pl-0 md:w-5/12 md:pl-8">
+                        <span class="text-sm text-gray font-medium px-4 py-1 bg-navyLight rounded-full md:hidden">1999 — 2008</span>
+                        <div class="md:hidden mb-2 mt-2">
+                            <h4 class="font-display text-xl font-bold text-white">Key Account Manager</h4>
+                            <p class="text-blue font-medium">Motorola</p>
+                        </div>
+                        <span class="hidden md:inline-block text-sm text-gray font-medium mb-2">1999 — 2008</span>
+                        <p class="text-gray leading-relaxed">
+                            Led GTM strategy for Sprint. Awarded Motorola Worldwide Nikki Petratos Award for Teaching. Directed Change Control process for iDEN platform.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-navy/30">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <p class="text-blue font-medium text-sm tracking-widest uppercase mb-4">Expertise</p>
+                    <h2 class="font-display text-4xl font-bold text-white mb-12">Core Competencies</h2>
+                    
+                    <div class="space-y-8">
+                        <div class="border-b border-white/10 pb-8">
+                            <h3 class="font-display text-xl font-bold text-white mb-3">Marketing Strategy</h3>
+                            <p class="text-gray leading-relaxed">Go-to-Market Strategy, Product Launches, Campaign Management, Brand Management, Public Relations.</p>
+                        </div>
+                        <div class="border-b border-white/10 pb-8">
+                            <h3 class="font-display text-xl font-bold text-white mb-3">Digital & Analytics</h3>
+                            <p class="text-gray leading-relaxed">Marketing Automation (Marketo, HubSpot), SEO/SEM, Social Media Strategy, Google Analytics, ROI Reporting.</p>
+                        </div>
+                        <div class="border-b border-white/10 pb-8">
+                            <h3 class="font-display text-xl font-bold text-white mb-3">Partner & Channel</h3>
+                            <p class="text-gray leading-relaxed">Partner Enablement, MDF Optimization, Co-op Marketing, Sales Enablement, Vendor Management.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal stagger-1">
+                    <h3 class="font-display text-2xl font-bold text-white mb-8">Tools & Technologies</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 p-4 bg-black/30 border border-white/5">
+                            <i class="fab fa-salesforce text-blue"></i>
+                            <span class="text-gray">Salesforce</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-black/30 border border-white/5">
+                            <i class="fas fa-envelope-open-text text-blue"></i>
+                            <span class="text-gray">Marketo</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-black/30 border border-white/5">
+                            <i class="fab fa-google text-blue"></i>
+                            <span class="text-gray">Google Analytics</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-black/30 border border-white/5">
+                            <i class="fas fa-project-diagram text-blue"></i>
+                            <span class="text-gray">MS Project</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-black/30 border border-white/5">
+                            <i class="fab fa-adobe text-blue"></i>
+                            <span class="text-gray">Adobe Creative</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-black/30 border border-white/5">
+                            <i class="fas fa-database text-blue"></i>
+                            <span class="text-gray">SAP / Oracle</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-black/30 border border-white/5">
+                            <i class="fab fa-microsoft text-blue"></i>
+                            <span class="text-gray">Office 365</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-black/30 border border-white/5">
+                            <i class="fas fa-code text-blue"></i>
+                            <span class="text-gray">HTML/CSS</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="font-display text-2xl font-bold text-white mb-6">Languages</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-blue text-navy text-sm font-medium">English (Fluent)</span>
+                            <span class="px-4 py-2 bg-blue text-navy text-sm font-medium">Spanish (Native)</span>
+                            <span class="px-4 py-2 bg-white/10 text-gray text-sm font-medium">Portuguese (Basic)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music & Passion Section -->
+    <section id="passion" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <p class="text-blue font-medium text-sm tracking-widest uppercase mb-4">Beyond Work</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-6">Music & Performance</h2>
+                <p class="text-gray max-w-2xl mx-auto text-lg">
+                    When I'm not crafting marketing strategies, I'm crafting melodies. Music is my passion, my creative outlet, and my source of energy.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <div class="image-reveal aspect-[4/5] reveal">
+                    <img src="https://images.unsplash.com/photo-1516280440614-6697288d5d38?w=600&h=750&fit=crop" 
+                         alt="Singing Performance" 
+                         class="w-full h-full object-cover"
+                         id="music-img-1">
+                </div>
+                <div class="image-reveal aspect-[4/5] reveal stagger-1">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=750&fit=crop" 
+                         alt="On Stage" 
+                         class="w-full h-full object-cover"
+                         id="music-img-2">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-navyLight border border-white/5 p-8 text-center reveal hover:border-blue/30 transition-all">
+                    <i class="fas fa-microphone-alt text-3xl text-blue mb-4"></i>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">Live Performance</h3>
+                    <p class="text-gray text-sm">Stage presence and vocal performance at various venues and events.</p>
+                </div>
+                <div class="bg-navyLight border border-white/5 p-8 text-center reveal stagger-1 hover:border-blue/30 transition-all">
+                    <i class="fas fa-heart text-3xl text-blue mb-4"></i>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">Creative Expression</h3>
+                    <p class="text-gray text-sm">Music as a creative outlet that fuels professional innovation.</p>
+                </div>
+                <div class="bg-navyLight border border-white/5 p-8 text-center reveal stagger-2 hover:border-blue/30 transition-all">
+                    <i class="fas fa-bolt text-3xl text-blue mb-4"></i>
+                    <h3 class="font-display text-xl font-bold text-white mb-2">Energy & Passion</h3>
+                    <p class="text-gray text-sm">The same energy on stage translates to boardroom confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-24 bg-navy/30">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="mb-12 reveal">
+                <p class="text-blue font-medium text-sm tracking-widest uppercase mb-4">Highlights</p>
+                <h2 class="font-display text-4xl font-bold text-white">Professional Moments</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="image-reveal aspect-square reveal">
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=400&fit=crop" 
+                         alt="TV Interview" 
+                         class="w-full h-full object-cover"
+                         id="gallery-1">
+                </div>
+                <div class="image-reveal aspect-square reveal stagger-1">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=400&fit=crop" 
+                         alt="Event" 
+                         class="w-full h-full object-cover"
+                         id="gallery-2">
+                </div>
+                <div class="image-reveal aspect-square reveal stagger-2">
+                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400&h=400&fit=crop" 
+                         alt="NAMM" 
+                         class="w-full h-full object-cover"
+                         id="gallery-3">
+                </div>
+                <div class="image-reveal aspect-square reveal stagger-3">
+                    <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&h=400&fit=crop" 
+                         alt="Speaking" 
+                         class="w-full h-full object-cover"
+                         id="gallery-4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-black">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <div class="reveal">
+                <p class="text-blue font-medium text-sm tracking-widest uppercase mb-4">Contact</p>
+                               <p class="text-gray text-lg mb-12 max-w-2xl mx-auto">
+  
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <a href="mailto:laufpa11@gmail.com" class="group p-6 bg-navyLight border border-white/5 hover:border-blue/30 transition-all hover:bg-blue/10">
+                        <i class="fas fa-envelope text-2xl mb-4 text-blue group-hover:text-blue"></i>
+                        <p class="font-medium text-white">Email</p>
+                        <p class="text-sm text-gray group-hover:text-gray">laufpa11@gmail.com</p>
+                    </a>
+                    <a href="tel:954-494-6405" class="group p-6 bg-navyLight border border-white/5 hover:border-blue/30 transition-all hover:bg-blue/10">
+                        <i class="fas fa-phone text-2xl mb-4 text-blue group-hover:text-blue"></i>
+                        <p class="font-medium text-white">Phone</p>
+                        <p class="text-sm text-gray group-hover:text-gray">954-494-6405</p>
+                    </a>
+                    <a href="https://linkedin.com/in/patricia-laufer-pl" target="_blank" class="group p-6 bg-navyLight border border-white/5 hover:border-blue/30 transition-all hover:bg-blue/10">
+                        <i class="fab fa-linkedin text-2xl mb-4 text-blue group-hover:text-blue"></i>
+                        <p class="font-medium text-white">LinkedIn</p>
+                        <p class="text-sm text-gray group-hover:text-gray">View Profile</p>
+                    </a>
+                </div>
+
+                <p class="text-gray/40 text-sm">Based in Wesley Chapel, Florida • Open to Remote & Travel</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 py-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-display font-bold text-white">PL.</p>
+            <p class="text-gray/40 text-sm">&copy; 2026 Patricia Laufer. All rights reserved.</p>
+            <div class="flex gap-4">
+                <a href="#" class="text-gray/40 hover:text-blue transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-gray/40 hover:text-blue transition-colors"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal animations on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
